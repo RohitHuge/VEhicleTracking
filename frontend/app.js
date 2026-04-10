@@ -1,4 +1,5 @@
-const API = "http://localhost:5000";
+const API = "https://famished-cowedly-larry.ngrok-free.dev";
+
 
 let user = JSON.parse(localStorage.getItem("user"));
 let markers = []; // To keep track of markers and clear them

@@ -1,4 +1,5 @@
-const API_URL = "http://localhost:5000";
+const API_URL = "https://famished-cowedly-larry.ngrok-free.dev";
+
 const storedUser = JSON.parse(localStorage.getItem("user"));
 
 if (!storedUser || storedUser.role !== 'admin') {
