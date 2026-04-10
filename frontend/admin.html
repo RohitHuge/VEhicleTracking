@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - VehiX</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css"/>
+    <style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #030014; color: white; }
+        #map { height: 100%; width: 100%; border-radius: 24px; }
+        .glass { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(10px); }
+        .card { background: #0a0a1a; border: 1px solid rgba(255, 255, 255, 0.05); }
+    </style>
+</head>
+<body class="h-screen overflow-hidden flex">
+
+    <!-- Sidebar -->
+    <aside class="w-[400px] h-full flex flex-col p-6 bg-[#030014] border-r border-white/5 space-y-8 overflow-y-auto">
+        <div class="flex items-center justify-between">
+            <div class="flex items-center space-x-2">
+                <div class="w-8 h-8 bg-indigo-600 rounded-lg flex items-center justify-center font-bold text-xl">V</div>
+                <h1 class="text-xl font-bold tracking-tight">VehiX Admin</h1>
+            </div>
+            <button onclick="logout()" class="p-2 hover:bg-white/5 rounded-xl transition-colors text-gray-400">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path></svg>
+            </button>
+        </div>
+
+        <div class="space-y-1">
+            <h2 class="text-xs font-bold text-gray-500 uppercase tracking-widest">System Overview</h2>
+            <div class="grid grid-cols-2 gap-4 pt-2">
+                <div class="glass p-4 rounded-2xl border border-white/5 text-center">
+                    <span id="active-count" class="text-2xl font-bold text-green-400">0</span>
+                    <p class="text-[10px] text-gray-500 font-bold uppercase">Active Drivers</p>
+                </div>
+                <div class="glass p-4 rounded-2xl border border-white/5 text-center">
+                    <span id="total-v" class="text-2xl font-bold text-indigo-400">0</span>
+                    <p class="text-[10px] text-gray-500 font-bold uppercase">Total Fleet</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="flex-1 space-y-4">
+            <h2 class="text-xs font-bold text-gray-500 uppercase tracking-widest px-1">Live Fleet List</h2>
+            <div id="fleet-list" class="space-y-3">
+                <!-- Fleet items -->
+                <p class="text-sm text-gray-600 px-2 italic">Scanning for active units...</p>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="flex-1 h-full flex flex-col p-6 space-y-6">
+        <div class="flex justify-between items-center">
+            <div>
+                <h1 class="text-2xl font-bold">Live Tracking Map</h1>
+                <p class="text-xs text-gray-400">Real-time synchronization with OSRM Road Matching</p>
+            </div>
+            <div class="glass px-4 py-2 rounded-full border border-white/10 flex items-center space-x-2">
+                <span class="w-2 h-2 bg-green-500 rounded-full animate-ping"></span>
+                <span class="text-xs font-bold uppercase tracking-wider">Live System Active</span>
+            </div>
+        </div>
+
+        <div class="flex-1 relative">
+            <div id="map"></div>
+        </div>
+    </main>
+
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script src="app.js?v=1"></script>
+    <script src="admin.js?v=1"></script>
+</body>
+</html>
