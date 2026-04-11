@@ -100,4 +100,56 @@ async function login() {
 
 // MAP & DASHBOARD UTILS (Shared)
 // Specific logic for Driver/Admin moved to driver.js / admin.js
+
+// Landing Page Map Preview
+function initPreviewMap() {
+    const mapContainer = document.getElementById('map-preview');
+    if (!mapContainer) return;
+
+    const map = L.map('map-preview', { 
+        zoomControl: false,
+        attributionControl: false,
+        dragging: false,
+        scrollWheelZoom: false,
+        doubleClickZoom: false
+    }).setView([18.5204, 73.8567], 14);
+
+    L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+        attribution: '&copy; OpenStreetMap contributors &copy; CARTO'
+    }).addTo(map);
+
+    // Simulated Vehicles
+    const vehicles = [
+        { id: 1, pos: [18.5230, 73.8500], color: '#6366f1' },
+        { id: 2, pos: [18.5150, 73.8650], color: '#ec4899' }
+    ];
+
+    const markers = vehicles.map(v => {
+        const icon = L.divIcon({
+            className: 'custom-div-icon',
+            html: `<div style="background-color: ${v.color}; width: 12px; height: 12px; border-radius: 50%; border: 2px solid white; box-shadow: 0 0 10px ${v.color};"></div>`,
+            iconSize: [12, 12],
+            iconAnchor: [6, 6]
+        });
+        return {
+            marker: L.marker(v.pos, { icon }).addTo(map),
+            lat: v.pos[0],
+            lng: v.pos[1]
+        };
+    });
+
+    // Animate markers
+    setInterval(() => {
+        markers.forEach(m => {
+            m.lat += (Math.random() - 0.5) * 0.0005;
+            m.lng += (Math.random() - 0.5) * 0.0005;
+            m.marker.setLatLng([m.lat, m.lng]);
+        });
+    }, 2000);
+}
+
+// Initialize on load
+if (document.getElementById('map-preview')) {
+    initPreviewMap();
+}
 
