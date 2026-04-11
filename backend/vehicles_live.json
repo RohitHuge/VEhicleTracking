@@ -1,11 +1,11 @@
 {
   "1": {
     "id": 1,
-    "lat": 18.51413,
-    "lng": 73.85497,
-    "speed": 44,
+    "lat": 18.51829,
+    "lng": 73.851,
+    "speed": 31,
     "status": "simulated",
     "driver_name": "rohit",
-    "last_updated": "2026-04-10T05:47:51.956Z"
+    "last_updated": "2026-04-10T14:04:36.948Z"
   }
 }

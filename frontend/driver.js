@@ -29,8 +29,11 @@ initMap();
 
 // Get Vehicle ID for this driver
 async function fetchVehicle() {
-    const res = await fetch(`${API_URL}/vehicles/${storedUser.id}`);
+    const res = await fetch(`${API_URL}/vehicles/${storedUser.id}`, {
+        headers: { "ngrok-skip-browser-warning": "69420" }
+    });
     const vehicles = await res.json();
+
     if (vehicles.length > 0) {
         vehicleId = vehicles[0].id;
     } else {
@@ -122,7 +125,10 @@ async function updateLocation(lat, lng, speed, status) {
     if (vehicleId) {
         await fetch(`${API_URL}/vehicles/update/${vehicleId}`, {
             method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
+            headers: { 
+                'Content-Type': 'application/json',
+                "ngrok-skip-browser-warning": "69420"
+            },
             body: JSON.stringify({ 
                 lat, 
                 lng, 
@@ -133,6 +139,7 @@ async function updateLocation(lat, lng, speed, status) {
         });
     }
 }
+
 
 
 function updateUI(state) {

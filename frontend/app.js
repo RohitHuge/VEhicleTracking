@@ -49,9 +49,13 @@ async function register() {
     try {
         const res = await fetch(API + "/auth/register", {
             method: "POST",
-            headers: { "Content-Type": "application/json" },
+            headers: { 
+                "Content-Type": "application/json",
+                "ngrok-skip-browser-warning": "69420"
+            },
             body: JSON.stringify({ name, email, password }),
         });
+
         const data = await res.json();
         alert(data.message);
         showLogin();
@@ -69,9 +73,13 @@ async function login() {
     try {
         const res = await fetch(API + "/auth/login", {
             method: "POST",
-            headers: { "Content-Type": "application/json" },
+            headers: { 
+                "Content-Type": "application/json",
+                "ngrok-skip-browser-warning": "69420"
+            },
             body: JSON.stringify({ email, password }),
         });
+
 
         if (!res.ok) throw new Error("Invalid credentials");
 

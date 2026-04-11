@@ -24,8 +24,11 @@ initMap();
 
 async function pollVehicles() {
     try {
-        const res = await fetch(`${API_URL}/vehicles/all`);
+        const res = await fetch(`${API_URL}/vehicles/all`, {
+            headers: { "ngrok-skip-browser-warning": "69420" }
+        });
         const vehicles = await res.json();
+
         
         updateStats(vehicles);
         updateMap(vehicles);
